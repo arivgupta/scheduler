@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Substack Notes Scheduler",
+  "description": "Schedule your Substack Notes posts from the browser",
+  "version": "1.0.0",
+  "permissions": ["storage", "alarms", "scripting", "activeTab", "tabs"],
+  "host_permissions": [
+    "https://*.substack.com/*",
+    "https://substack.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.svg"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.substack.com/*",
+        "https://substack.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}

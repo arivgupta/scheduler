@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Substack Notes Scheduler</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Substack Notes Scheduler</h1>
+      <div style="display: flex; align-items: center; gap: 4px;">
+        <button id="theme-toggle" class="theme-toggle" title="Toggle theme">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+      <button id="settings" class="icon-button"><i class="fas fa-cog"></i></button>
+    </header>
+
+    <div class="editor-container">
+      <div class="toolbar">
+        <button id="bold" title="Bold"><i class="fas fa-bold"></i></button>
+        <button id="italic" title="Italic"><i class="fas fa-italic"></i></button>
+        <button id="link" title="Insert Link"><i class="fas fa-link"></i></button>
+        <button id="image" title="Insert Image"><i class="fas fa-image"></i></button>
+        <span class="undo-redo-group">
+          <button id="undo" title="Undo"><i class="fas fa-undo"></i></button>
+          <button id="redo" title="Redo"><i class="fas fa-redo"></i></button>
+        </span>
+        <span class="font-size-group">
+          <button class="font-size-btn" data-size="14" title="Small">A</button>
+          <button class="font-size-btn active" data-size="16" title="Medium">A</button>
+          <button class="font-size-btn" data-size="20" title="Large">A</button>
+        </span>
+        <button id="clear" title="Clear Editor"><i class="fas fa-trash"></i></button>
+      </div>
+      <div id="editor" class="editor" contenteditable="true" placeholder="Write your note here..."></div>
+      <div class="editor-footer">
+        <span id="word-count">0 words</span>
+        <span id="char-count">0 chars</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="post" class="primary-button">
+        <i class="fas fa-paper-plane"></i> Post Now
+      </button>
+      <button id="save" class="secondary-button">
+        <i class="fas fa-save"></i> Save Draft
+      </button>
+    </div>
+
+    <div class="schedule-section">
+      <div class="schedule-header">
+        <h2>Schedule Post</h2>
+        <div class="timezone-info"></div>
+      </div>
+      <input type="datetime-local" id="scheduleTime" class="datetime-input">
+      <button id="add-schedule" class="primary-button">
+        <i class="fas fa-calendar-plus"></i> Add to Schedule
+      </button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-button active" data-tab="drafts">Drafts</button>
+      <button class="tab-button" data-tab="scheduled">Scheduled</button>
+      <button class="tab-button" data-tab="history">History</button>
+    </div>
+
+    <div class="content">
+      <div id="drafts-tab" class="tab-content active">
+        <ul id="saved-list" class="note-list"></ul>
+      </div>
+      <div id="scheduled-tab" class="tab-content">
+        <ul id="scheduled-list" class="note-list"></ul>
+      </div>
+      <div id="history-tab" class="tab-content">
+        <ul id="delivered-list" class="note-list"></ul>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <div class="auto-save-status">
+        <i class="fas fa-sync"></i> Auto-save: <span>On</span>
+      </div>
+      <div class="last-saved">Last saved: <span>Just now</span></div>
+    </div>
+  </div>
+  <div id="custom-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="modal-close" id="modal-close">&times;</span>
+      <h3 id="modal-title">Insert</h3>
+      <div class="modal-body">
+        <label id="modal-label" for="modal-input" class="modal-label">URL</label>
+        <input type="text" id="modal-input" class="modal-input" placeholder="https://..." autocomplete="off" />
+        <div id="image-drop-area" class="image-drop-area" style="display:none;">Drag & drop an image here or click to select</div>
+        <img id="image-preview" class="image-preview" style="display:none;" />
+      </div>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="secondary-button">Cancel</button>
+        <button id="modal-ok" class="primary-button" disabled>OK</button>
+      </div>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Substack Notes Scheduler - Settings</title>
+  <link rel="stylesheet" href="options.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="settings-root">
+    <header class="settings-header">
+      <div class="settings-logo" aria-label="Substack Notes Scheduler">
+        <span class="logo-circle">S</span>
+      </div>
+      <div class="settings-title">Substack Notes Scheduler</div>
+      <button id="back" class="icon-button" aria-label="Back to extension"><i class="fas fa-times"></i></button>
+    </header>
+
+    <div class="settings-card">
+      <div class="section-title"><i class="fas fa-cogs accent"></i> General</div>
+      <div class="setting-item">
+        <div class="setting-label">
+          <i class="fas fa-sync"></i>
+          <span>Auto-save Drafts</span>
+        </div>
+        <label class="switch" aria-label="Toggle auto-save drafts">
+          <input type="checkbox" id="autoSave">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <div class="section-title"><i class="fas fa-database accent"></i> Data Management</div>
+      <div class="setting-item">
+        <div class="setting-label">
+          <i class="fas fa-download"></i>
+          <span>Export Data</span>
+        </div>
+        <button id="export" class="secondary-button" aria-label="Export data">
+          <i class="fas fa-file-export"></i> Export
+        </button>
+      </div>
+      <div class="setting-item">
+        <div class="setting-label">
+          <i class="fas fa-upload"></i>
+          <span>Import Data</span>
+        </div>
+        <input type="file" id="import" accept=".json" class="file-input" aria-label="Import data">
+      </div>
+      <div class="setting-item">
+        <div class="setting-label">
+          <i class="fas fa-trash"></i>
+          <span>Clear All Data</span>
+        </div>
+        <button id="clearData" class="danger-button" aria-label="Clear all data">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <div id="status" class="status-message"></div>
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
